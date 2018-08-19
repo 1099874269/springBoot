@@ -1,0 +1,75 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head th:include="/header::header" />
+<style>
+    input{ BACKGROUND-COLOR: transparent;
+        BORDER-BOTTOM: white 1px solid;
+        BORDER-LEFT: medium none;
+        BORDER-RIGHT: medium none;
+        BORDER-TOP: medium none;
+        FONT-SIZE: 12px;
+        color: white}
+    .login-agileits-top input{width: 500px;height: 25px;font-size: 20px;}
+    .login-agileits-top div{width: 150px;height: 35px;position: relative; left: 20px; font-size: 20px; font-family: 方正舒体; margin-top: 5px;text-align: left}
+</style>
+<body th:background="@{/images/1.png}" >
+<div style="margin:auto">
+    <div class="main">
+        <h1 style="color: white">Event Login Form</h1>
+        <div class="main-w3lsrow">
+            <!-- login form -->
+            <div class="login-form login-form-left">
+                <div class="agile-row">
+                    <h2>Login Form</h2>
+                    <div class="login-agileits-top">
+                        <form action="submitOrder" method="post">
+                        <ul style="list-style: none; color: white">
+                            <li><div>姓名：</div><input name="name" /></li>
+                            <li><div>身份证号码：</div><input name="IDno"/></li>
+                            <li><div>电话号码：</div><input name="tellNo"/></li>
+                            <li><div>帐号：</div><input name="account"/></li>
+                            <li><div>密码：</div><input name="password"/></li>
+                            <li><div>出发日期：</div><input name="startData"/></li>
+                            <li><div>起始站：</div><input name="startStation"/></li>
+                            <li><div>终点站：</div><input name="endStation"/></li>
+                            <li><div>车次：</div><input name="trains"/></li>
+                            <li><div>车票类型：</div><input name="type"/></li>
+                        </ul>
+                        </form>
+                        <input id="submit" style="height:40px;width: 400px;font-family: 方正舒体" type="submit" th:value="提交"/>
+                    </div>
+                    <div class="login-agileits-bottom">
+                        <!--<h6><a href="#">Forgot password?</a></h6>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- copyright -->
+        <div class="copyright">
+            <p> © 2018 Event Login Form. All rights reserved | Design by <a href="#" target="_blank">YangDanFeng</a></p>
+        </div>
+        <!-- //copyright -->
+    </div>
+</div>
+</body>
+<script>
+    $(function () {
+        $("#submit").click(function () {
+            var url = $('form').attr("action")
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "text",//预期服务器返回的数据类型
+                url: url,//url
+                data: $('form').serialize(),
+                success: function (result) {
+                    var res = eval('('+result+')')
+                    alert(res['msgDesc'])
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+        })
+    })
+</script>
+</html>
