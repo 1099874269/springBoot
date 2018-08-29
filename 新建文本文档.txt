@@ -1,0 +1,2 @@
+-XX:+DisableAttachMechanism
+-javaagent:D:\Program\Study\IDEA\IntelliJ IDEA 2018.1\ideaagent-1.2.jar
